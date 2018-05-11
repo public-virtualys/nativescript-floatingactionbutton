@@ -16,13 +16,19 @@ button {
 }
 
 .fab-button-bottom {
-    height: 60;
-    width: 60;
-    margin: 15;
+    margin: 16;
     horizontal-align: right;
     vertical-align: bottom;
     color: #FFF;
     background-color: #ff4081;
+}
+
+.fab-button-top {
+    margin: 16;
+    horizontal-align: right;
+    vertical-align: top;
+    color: #FFF;
+    background-color: rgb(220, 255, 64);
 }
 
 .commands{

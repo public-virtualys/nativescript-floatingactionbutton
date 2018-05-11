@@ -1,7 +1,8 @@
 import {
   FloatingActionButtonBase,
   rippleColorProperty,
-  iconProperty
+  iconProperty,
+  sizeProperty
 } from "./fab-common";
 import * as style from "tns-core-modules/ui/styling/style";
 import * as utils from "tns-core-modules/utils/utils";
@@ -50,6 +51,18 @@ export class Fab extends FloatingActionButtonBase {
     this.nativeView.setId(this._androidViewId);
   }
 
+  public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
+    switch (this.nativeView.getSize()) {
+      case android.support.design.widget.FloatingActionButton.SIZE_MINI:
+        this.setMeasuredDimension(40, 40);
+        return;
+
+      default:
+        this.setMeasuredDimension(56, 56);
+        return;
+    }
+  }
+  
   [backgroundColorProperty.getDefault](): android.content.res.ColorStateList {
     return this.nativeView.getBackgroundTintList();
   }
@@ -109,6 +122,20 @@ export class Fab extends FloatingActionButtonBase {
           "The icon: " + value + " was not found. Check your XML icon property."
         );
       }
+    }
+  }
+
+  [sizeProperty.setNative](value: any) {
+    switch (value) {
+      case "mini":
+        this.nativeView.setSize(android.support.design.widget.FloatingActionButton.SIZE_MINI);
+        break;
+      case "auto":
+        this.nativeView.setSize(android.support.design.widget.FloatingActionButton.SIZE_AUTO);
+        break;
+      default:
+        this.nativeView.setSize(android.support.design.widget.FloatingActionButton.SIZE_NORMAL);
+        break;
     }
   }
 }

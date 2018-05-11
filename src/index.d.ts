@@ -12,5 +12,10 @@ export declare class Fab extends View {
   public hideAnimationDuration: number;
   public rippleColor: Color;
   public icon: string;
+  public size:
+    | "auto"
+    | "normal"
+    | "mini"
+    | "custom";
   // public backColor: Color;
 }

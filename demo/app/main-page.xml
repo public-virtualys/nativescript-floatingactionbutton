@@ -21,5 +21,15 @@
                 class="fab-button-bottom"
                 hideOnSwipeOfView="userList"
                 swipeAnimation="slideUp"  /> <!-- slideDown, slideUp, slideRight, slideLeft, scale -->
+        <FAB:fab
+                id="fabButton"
+                row="1"
+                icon="res://nstudio"
+                tap="fabTap"
+                rippleColor="#ffffff"
+                class="fab-button-top"
+                hideOnSwipeOfView="userList"
+                swipeAnimation="slideDown"
+                size="mini"  />
     </grid-layout>
 </Page>

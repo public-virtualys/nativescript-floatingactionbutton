@@ -25,8 +25,12 @@ export class FloatingActionButtonBase extends View implements definitions.Fab {
   public hideAnimationDuration: number;
   public rippleColor: Color;
   public icon: string;
+  public size:
+    | "auto"
+    | "normal"
+    | "mini"
+    | "custom";
 
-  onLa;
   onLoaded() {
     super.onLoaded();
     if (this.swipeEventAttached === false) {
@@ -197,3 +201,9 @@ export const rippleColorProperty = new Property<
   valueConverter: v => new Color(v)
 });
 rippleColorProperty.register(FloatingActionButtonBase);
+
+export const sizeProperty = new Property<FloatingActionButtonBase, string>({
+  name: "size",
+  affectsLayout: true
+});
+sizeProperty.register(FloatingActionButtonBase);
