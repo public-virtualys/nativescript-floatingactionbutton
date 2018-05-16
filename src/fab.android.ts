@@ -7,6 +7,7 @@ import {
 import * as style from "tns-core-modules/ui/styling/style";
 import * as utils from "tns-core-modules/utils/utils";
 import * as ImageSource from "tns-core-modules/image-source";
+import { screen } from "tns-core-modules/platform";
 import { Color } from "tns-core-modules/color";
 import {
   backgroundColorProperty,
@@ -52,17 +53,31 @@ export class Fab extends FloatingActionButtonBase {
   }
 
   public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
-    switch (this.nativeView.getSize()) {
-      case android.support.design.widget.FloatingActionButton.SIZE_MINI:
+    switch (this.size) {
+      case "mini":
         this.setMeasuredDimension(40, 40);
         return;
 
+      case "auto":
+        if ( screen.mainScreen.widthPixels < 470 ) {
+          this.setMeasuredDimension(80, 80);
+        }
+        else {
+          this.setMeasuredDimension(112, 112);
+        }
+        return;
+      case "custom":
+        this.setMeasuredDimension(
+          widthMeasureSpec,
+          heightMeasureSpec
+        );
+        return;
       default:
         this.setMeasuredDimension(56, 56);
         return;
     }
   }
-  
+
   [backgroundColorProperty.getDefault](): android.content.res.ColorStateList {
     return this.nativeView.getBackgroundTintList();
   }
@@ -132,6 +147,8 @@ export class Fab extends FloatingActionButtonBase {
         break;
       case "auto":
         this.nativeView.setSize(android.support.design.widget.FloatingActionButton.SIZE_AUTO);
+        break;
+      case "custom":
         break;
       default:
         this.nativeView.setSize(android.support.design.widget.FloatingActionButton.SIZE_NORMAL);

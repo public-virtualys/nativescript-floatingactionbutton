@@ -1,7 +1,8 @@
 import {
   FloatingActionButtonBase,
   rippleColorProperty,
-  iconProperty
+  iconProperty,
+  sizeProperty
 } from "./fab-common";
 import { Color } from "tns-core-modules/color";
 import {
@@ -11,7 +12,7 @@ import {
   PercentLength
 } from "tns-core-modules/ui/core/view";
 import * as ImageSource from "tns-core-modules/image-source";
-
+import { screen } from "tns-core-modules/platform";
 declare var MNFloatingActionButton: any;
 
 export class Fab extends FloatingActionButtonBase {
@@ -75,5 +76,33 @@ export class Fab extends FloatingActionButtonBase {
     imageView.contentMode = UIViewContentMode.ScaleAspectFit;
     imageView.frame = CGRectMake(0, 0, width / 2, height / 2);
     imageView.center = CGPointMake(width / 2, height / 2);
+  }
+
+  public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
+    const frame = this.nativeView.frame;
+    const mini = 40 * 2;
+    const normal = 56 * 2;
+    switch (this.size) {
+      case "mini":
+        this.setMeasuredDimension(mini, mini);
+        return;
+      case "auto":
+        if ( screen.mainScreen.widthPixels < 470 ) {
+          this.setMeasuredDimension(mini, mini);
+        }
+        else {
+          this.setMeasuredDimension(normal, normal);
+        }
+        return;
+      case "custom":
+        this.setMeasuredDimension(
+          widthMeasureSpec,
+          heightMeasureSpec
+        );
+        return;
+      default:
+        this.setMeasuredDimension(normal, normal);
+        return;
+    }
   }
 }

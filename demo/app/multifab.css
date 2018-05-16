@@ -1,11 +1,12 @@
 .fab-button {
-  height: 50;
-  width: 50;
   margin: 15;
   color: #fff;
   background-color: #ff4081;
 }
-
+.fab-custom {
+	width: 80;
+	height:60;
+}
 .top-left {
   background-color: red;
   horizontal-align: left;
@@ -15,6 +16,12 @@
 .top-right {
   background-color: #336699;
   horizontal-align: right;
+  vertical-align: top;
+}
+
+.top-center {
+  background-color: #336699;
+  horizontal-align: center;
   vertical-align: top;
 }
 
