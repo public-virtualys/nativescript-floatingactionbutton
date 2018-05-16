@@ -31,15 +31,11 @@ button {
     background-color: rgb(220, 255, 64);
 }
 
-.fab-button {
-	width: 56;
-	height: 56;
-}
-.commands{
+.commands {
     padding: 10 5;
     background-color: #f0f0f0;
 }
 
-.commands Button{
+.commands Button {
     font-size: 14;
 }

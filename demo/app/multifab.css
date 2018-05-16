@@ -3,10 +3,12 @@
   color: #fff;
   background-color: #ff4081;
 }
-.fab-custom {
-	width: 80;
-	height:60;
+
+.fab-button-custom {
+	width: 60;
+	height: 60;
 }
+
 .top-left {
   background-color: red;
   horizontal-align: left;
